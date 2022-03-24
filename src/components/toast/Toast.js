@@ -3,6 +3,8 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import Snackbar from '@mui/material/Snackbar';
 import CloseIcon from '@mui/icons-material/Close';
+import CircularProgress from '@mui/material/CircularProgress';
+import { Alert } from '@mui/material';
 
 // Handles the display of toast messages.
 export default function Toast({ horizontal, open, vertical, handleSave, handleClose, userData, isLoading, isError }) {
@@ -16,9 +18,9 @@ export default function Toast({ horizontal, open, vertical, handleSave, handleCl
       key={vertical + horizontal}
       action={
         <>
-          {isError ? <><p>Error saving data...</p><Button onClick={handleSave}>Try again!</Button> or <Button onClick={handleClose}>Close</Button></> :
+          {isError ? <Alert severity="error">Error saving data! <Button onClick={handleSave}>Try again!</Button> or <Button onClick={handleClose}>Close</Button></Alert> :
             <>
-              {isLoading ? <p> Data save in progress... </p> :
+              {isLoading ? <CircularProgress /> :
                 <Button color="primary" size="small" onClick={handleSave}>
                   Like
                 </Button>
